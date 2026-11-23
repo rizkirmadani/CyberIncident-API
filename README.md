@@ -1,5 +1,19 @@
 # CyberIncident API
 
+## Identitas Mahasiswa
+
+| Keterangan | Informasi |
+|---|---|
+| Nama | Rizki Ramadani |
+| NIM | 23.83.1015 |
+| Kelas | TK070 |
+| Program Studi | Teknik Komputer |
+| Universitas | Universitas Amikom Yogyakarta |
+| Mata Kuliah | Pemrograman Web Lanjut |
+| Tugas | Ujian Tengah Semester (UTS) |
+
+---
+
 A simple REST API prototype for simulated cybersecurity incident reporting. Built for the PWL UTS project with Flask, SQLAlchemy ORM, SQLite, and an MVC-style separation (models, controllers, routes).
 
 
