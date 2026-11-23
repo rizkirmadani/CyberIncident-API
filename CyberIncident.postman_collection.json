@@ -1,0 +1,13 @@
+{
+  "info": {"name": "CyberIncident API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "item": [
+    {"name": "Health", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/health"}},
+    {"name": "Create user", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"Demo Reporter\",\"email\":\"reporter@example.com\",\"role\":\"reporter\"}"}, "url": "{{baseUrl}}/api/v1/users"}},
+    {"name": "List users", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/users"}},
+    {"name": "Create asset", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"asset_name\":\"Demo PC\",\"asset_type\":\"computer\",\"ip_address\":\"192.0.2.50\",\"description\":\"Sample test asset\"}"}, "url": "{{baseUrl}}/api/v1/assets"}},
+    {"name": "Create category", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"Suspicious Login\",\"description\":\"Repeated login attempt alert\"}"}, "url": "{{baseUrl}}/api/v1/categories"}},
+    {"name": "Create incident", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"title\":\"Suspicious login alert\",\"description\":\"Repeated login failures in simulation\",\"severity\":\"high\",\"status\":\"open\",\"user_id\":1,\"asset_id\":1,\"category_id\":1}"}, "url": "{{baseUrl}}/api/v1/incidents"}},
+    {"name": "List incidents with filters", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/incidents?status=open&severity=high&page=1&per_page=10"}}
+  ],
+  "variable": [{"key": "baseUrl", "value": "http://127.0.0.1:5000"}]
+}
