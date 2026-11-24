@@ -1,271 +1,160 @@
 # CyberIncident API
 
-Sistem Pelaporan dan Pengelolaan Insiden Keamanan Siber Berbasis REST API
+CyberIncident API adalah project REST API sederhana untuk mencatat dan mengelola laporan insiden keamanan siber. Project ini dibuat menggunakan Python Flask dan database SQLite untuk tugas UTS Pemrograman Web Lanjut.
 
 ## Identitas Mahasiswa
 
-| Keterangan | Informasi |
+- **Nama:** Rizki Ramadani
+- **NIM:** 23.83.1015
+- **Kelas:** TK070
+- **Prodi:** Teknik Komputer
+- **Universitas:** Universitas Amikom Yogyakarta
+- **Mata Kuliah:** Pemrograman Web Lanjut
+
+## 1. Tujuan Project
+
+Project ini dibuat untuk mempelajari cara membuat REST API, mengelola data menggunakan database, dan menjalankan fungsi CRUD (tambah, lihat, ubah, dan hapus data).
+
+## 2. Teknologi yang Digunakan
+
+- **Python dan Flask:** Membuat REST API.
+- **SQLite:** Menyimpan data.
+- **SQLAlchemy:** Menghubungkan aplikasi dengan database.
+- **Postman:** Menguji API.
+- **pytest:** Melakukan pengujian otomatis.
+
+## 3. Fitur Utama
+
+- Mengelola data pengguna, aset, dan kategori insiden.
+- Menambah, melihat, mengubah, dan menghapus laporan insiden.
+- Mencatat perkembangan penanganan insiden.
+- Menampilkan laporan menggunakan filter dan pagination.
+- Memberikan pesan kesalahan jika data tidak sesuai atau tidak ditemukan.
+
+## 4. Struktur Database
+
+Project ini menggunakan lima tabel:
+
+| Tabel | Kegunaan |
 |---|---|
-| Nama | Rizki Ramadani |
-| NIM | 23.83.1015 |
-| Kelas | TK070 |
-| Program Studi | Teknik Komputer |
-| Universitas | Universitas Amikom Yogyakarta |
-| Mata Kuliah | Pemrograman Web Lanjut |
-| Tugas | Ujian Tengah Semester (UTS) |
+| `users` | Data pengguna |
+| `assets` | Data aset |
+| `incident_categories` | Kategori insiden |
+| `incidents` | Laporan insiden |
+| `incident_updates` | Riwayat perkembangan insiden |
 
-## 1. Tentang Project
+## 5. Cara Menjalankan Project
 
-CyberIncident API adalah project sederhana yang saya buat menggunakan Python Flask untuk mengelola laporan insiden keamanan siber.
+Buka terminal di folder project, lalu jalankan perintah berikut.
 
-Project ini dibuat agar data kejadian keamanan, seperti percobaan login mencurigakan atau gangguan pada sistem, bisa dicatat dan dikelola dengan lebih terstruktur.
-
-Melalui API ini, kita dapat menambahkan laporan, melihat data yang sudah tersimpan, mengubah status penanganan, dan menghapus laporan yang tidak diperlukan.
-
-Project ini menggunakan data simulasi dan dibuat untuk memenuhi tugas UTS mata kuliah Pemrograman Web Lanjut.
-
-## 2. Fitur Project
-
-Beberapa fitur yang tersedia:
-
-- Mengelola data pengguna (Users).
-- Mengelola data aset (Assets).
-- Mengelola kategori insiden (Categories).
-- Membuat dan mengelola laporan insiden (Incidents).
-- Menambahkan riwayat penanganan insiden.
-- Melakukan pencarian, filter, dan pagination.
-- Melakukan validasi data yang dikirim melalui API.
-- Menampilkan respons dalam format JSON.
-
-## 3. Teknologi yang Digunakan
-
-| Teknologi | Fungsi |
-|---|---|
-| Python | Bahasa pemrograman |
-| Flask | Framework REST API |
-| Flask-SQLAlchemy | ORM untuk pengelolaan database |
-| SQLite | Database yang digunakan |
-| Flask-Migrate | Pengelolaan perubahan database |
-| Postman | Pengujian API |
-| pytest | Pengujian otomatis |
-| GitHub | Penyimpanan source code |
-
-## 4. Cara Menjalankan Project
-
-Project ini dapat dijalankan melalui terminal VS Code.
-
-### Membuat Virtual Environment
+**1. Membuat virtual environment**
 
 ```bash
-python3 -m venv venv
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-### Mengaktifkan Virtual Environment
-
-Untuk macOS atau Linux:
-
-```bash
-source venv/bin/activate
-```
-
-Untuk Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-### Menginstall Library
+**2. Menginstal library**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Mengisi Database dengan Data Contoh
+**3. Menyiapkan konfigurasi dan data contoh**
 
 ```bash
+cp .env.example .env
 python seed.py
 ```
 
-### Menjalankan Server
+**4. Menjalankan API**
 
 ```bash
 python run.py
 ```
 
-Jika berhasil, server akan berjalan di alamat:
+API dapat diakses melalui:
 
 `http://127.0.0.1:5000`
 
-Untuk memastikan API berjalan, buka:
+## 6. Endpoint API
 
-`http://127.0.0.1:5000/api/v1/health`
-
-## 5. Daftar Endpoint API
-
-Berikut endpoint utama yang tersedia dalam project.
-
-| Method | Endpoint | Keterangan |
+| Method | Endpoint | Kegunaan |
 |---|---|---|
-| GET | `/api/v1/health` | Mengecek kondisi API |
-| GET | `/api/v1/users` | Menampilkan pengguna |
-| POST | `/api/v1/users` | Menambahkan pengguna |
-| GET | `/api/v1/users/<id>` | Melihat detail pengguna |
-| PUT | `/api/v1/users/<id>` | Mengubah pengguna |
-| DELETE | `/api/v1/users/<id>` | Menghapus pengguna |
-| GET | `/api/v1/assets` | Menampilkan aset |
-| POST | `/api/v1/assets` | Menambahkan aset |
-| GET | `/api/v1/assets/<id>` | Melihat detail aset |
-| PUT | `/api/v1/assets/<id>` | Mengubah aset |
-| DELETE | `/api/v1/assets/<id>` | Menghapus aset |
-| GET | `/api/v1/categories` | Menampilkan kategori |
-| POST | `/api/v1/categories` | Menambahkan kategori |
-| GET | `/api/v1/categories/<id>` | Melihat detail kategori |
-| PUT | `/api/v1/categories/<id>` | Mengubah kategori |
-| DELETE | `/api/v1/categories/<id>` | Menghapus kategori |
-| GET | `/api/v1/incidents` | Menampilkan laporan insiden |
-| POST | `/api/v1/incidents` | Membuat laporan insiden |
-| GET | `/api/v1/incidents/<id>` | Melihat detail insiden |
-| PUT | `/api/v1/incidents/<id>` | Memperbarui insiden |
-| DELETE | `/api/v1/incidents/<id>` | Menghapus insiden |
-| GET | `/api/v1/incidents/<id>/updates` | Melihat riwayat penanganan |
-| POST | `/api/v1/incidents/<id>/updates` | Menambahkan riwayat penanganan |
+| GET | `/api/v1/health` | Mengecek API |
+| GET | `/api/v1/users` | Melihat pengguna |
+| GET | `/api/v1/assets` | Melihat aset |
+| GET | `/api/v1/incidents` | Melihat laporan |
+| POST | `/api/v1/incidents` | Menambah laporan |
+| GET | `/api/v1/incidents/{id}` | Melihat detail laporan |
+| PUT | `/api/v1/incidents/{id}` | Mengubah laporan |
+| DELETE | `/api/v1/incidents/{id}` | Menghapus laporan |
+| GET | `/api/v1/incidents/{id}/updates` | Melihat riwayat laporan |
+| POST | `/api/v1/incidents/{id}/updates` | Menambah riwayat laporan |
 
-`<id>` diganti dengan nomor ID data yang ingin diakses.
+Endpoint lainnya dapat dilihat melalui file `openapi.yaml`.
 
-## 6. Contoh Penggunaan API
+## 7. Dokumentasi Pengujian Postman
 
-Pengujian API dilakukan menggunakan Postman.
+Pengujian dilakukan menggunakan Postman untuk memastikan API berjalan dengan baik.
 
-### Menampilkan Laporan Insiden
+### GET Incidents — 200 OK
 
-Method: `GET`
+Menampilkan daftar laporan insiden yang tersimpan.
 
-Endpoint:
+![GET Incidents](docs/screenshots/get-incidents.png)
 
-```text
-http://127.0.0.1:5000/api/v1/incidents
-```
+### POST Incident — 201 Created
 
-### Menambahkan Laporan Insiden
+Menambahkan laporan insiden baru ke database.
 
-Method: `POST`
+![POST Incident](docs/screenshots/post-incident.png)
 
-Endpoint:
+### PUT Incident — 200 OK
 
-```text
-http://127.0.0.1:5000/api/v1/incidents
-```
+Mengubah status laporan dari `open` menjadi `investigating`.
 
-Contoh Body JSON:
+![PUT Incident](docs/screenshots/put-incident.png)
 
-```json
-{
-  "title": "Percobaan Login Mencurigakan",
-  "description": "Terdeteksi aktivitas login mencurigakan pada server simulasi.",
-  "severity": "high",
-  "status": "open",
-  "asset_id": 1,
-  "category_id": 1,
-  "user_id": 1
-}
-```
+### DELETE Incident — 200 OK
 
-ID pengguna, aset, dan kategori harus disesuaikan dengan data yang tersedia.
+Menghapus laporan insiden berdasarkan ID.
 
-### Mengubah Status Insiden
+![DELETE Incident](docs/screenshots/delete-incident.png)
 
-Method: `PUT`
+### GET Not Found — 404
 
-Endpoint:
+Menguji API saat data yang dicari tidak ditemukan.
 
-```text
-http://127.0.0.1:5000/api/v1/incidents/2
-```
+![404 Not Found](docs/screenshots/not-found-404.png)
 
-Contoh Body JSON:
+### POST Validation Error — 400
 
-```json
-{
-  "status": "investigating"
-}
-```
+Menguji API dengan mengirimkan data kosong. API menolak request karena judul dan deskripsi wajib diisi.
 
-### Menghapus Insiden
+![400 Bad Request](docs/screenshots/validation-400.png)
 
-Method: `DELETE`
+## 8. Pengujian Otomatis
 
-Endpoint:
-
-```text
-http://127.0.0.1:5000/api/v1/incidents/2
-```
-
-## 7. Pengujian Project
-
-Pengujian dilakukan secara manual menggunakan Postman dan secara otomatis menggunakan pytest.
-
-Hasil pengujian manual:
-
-| Pengujian | Status HTTP | Hasil |
-|---|---|---|
-| GET laporan insiden | 200 OK | Berhasil |
-| POST laporan baru | 201 Created | Berhasil |
-| PUT laporan insiden | 200 OK | Berhasil |
-| DELETE laporan insiden | 200 OK | Berhasil |
-| GET data yang sudah dihapus | 404 Not Found | Sesuai harapan |
-| POST tanpa data wajib | 400 Bad Request | Sesuai harapan |
-
-Untuk menjalankan pengujian otomatis:
+Selain Postman, pengujian dilakukan menggunakan pytest dengan perintah:
 
 ```bash
 python -m pytest -v
 ```
 
-Pada pengujian yang sudah dilakukan, terdapat 4 test dan semuanya berhasil.
+Hasil pengujian:
 
-## 8. Struktur Database
+```text
+4 passed in 0.11s
+```
 
-Project ini menggunakan lima tabel utama:
+Artinya, keempat pengujian otomatis berhasil dijalankan.
 
-1. **Users:** menyimpan data pengguna atau pelapor.
-2. **Assets:** menyimpan informasi aset yang berkaitan dengan insiden.
-3. **Incident Categories:** menyimpan kategori insiden keamanan.
-4. **Incidents:** menyimpan laporan kejadian keamanan.
-5. **Incident Updates:** menyimpan riwayat pembaruan atau penanganan insiden.
+## 9. Kesimpulan
 
-Tabel-tabel tersebut saling berhubungan melalui relasi database sehingga informasi insiden dapat dikaitkan dengan pengguna, aset, dan kategorinya.
+CyberIncident API berhasil dibuat untuk mengelola laporan insiden keamanan siber menggunakan Flask dan SQLite. Dari hasil pengujian Postman dan pytest, fitur yang diuji dapat berjalan sesuai dengan fungsinya, termasuk saat menerima data yang tidak lengkap atau tidak ditemukan.
 
-## 9. Dokumentasi Tambahan
+---
 
-Project ini juga dilengkapi beberapa file pendukung:
-
-- `PROPOSAL.md` untuk penjelasan proposal UTS.
-- `openapi.yaml` untuk dokumentasi spesifikasi API.
-- `CyberIncident.postman_collection.json` untuk pengujian menggunakan Postman.
-- Folder `tests/` untuk pengujian otomatis.
-
-## 10. Batasan Project
-
-CyberIncident API masih berupa prototipe sederhana. Beberapa batasannya adalah:
-
-- Menggunakan data simulasi.
-- Belum memiliki tampilan frontend.
-- Belum menggunakan autentikasi dan otorisasi.
-- Menggunakan SQLite untuk pengembangan lokal.
-- Tidak melakukan scanning atau eksploitasi jaringan.
-
-## 11. Rencana Pengembangan UAS
-
-Untuk pengembangan selanjutnya, saya berencana menambahkan:
-
-- Login dan autentikasi menggunakan JWT.
-- Pembatasan akses berdasarkan role pengguna.
-- Dashboard untuk melihat data laporan.
-- Deployment API agar bisa diakses secara online.
-- Pengujian dan validasi yang lebih lengkap.
-
-## 12. Kesimpulan
-
-Dari pembuatan project CyberIncident API ini, saya belajar bagaimana membangun REST API menggunakan Flask, menghubungkan aplikasi dengan database, menggunakan ORM, membuat endpoint CRUD, serta melakukan pengujian melalui Postman dan pytest.
-
-Walaupun masih sederhana, project ini sudah dapat digunakan sebagai contoh sistem pencatatan dan pengelolaan insiden keamanan siber berbasis REST API.
+**Rizki Ramadani — 23.83.1015**  
+Teknik Komputer — Universitas Amikom Yogyakarta
