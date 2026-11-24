@@ -77,6 +77,13 @@ API dapat diakses melalui:
 
 `http://127.0.0.1:5000`
 
+## Demo API Online
+
+CyberIncident API telah di-deploy menggunakan PythonAnywhere.
+
+- Health Check: https://rizkirmadani.pythonanywhere.com/api/v1/health
+- Daftar Insiden: https://rizkirmadani.pythonanywhere.com/api/v1/incidents
+
 ## 6. Endpoint API
 
 | Method | Endpoint | Kegunaan |
