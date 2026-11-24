@@ -94,6 +94,12 @@ API dapat diakses melalui:
 
 Endpoint lainnya dapat dilihat melalui file `openapi.yaml`.
 
+## ERD Database
+
+Database CyberIncident API menggunakan 5 tabel yang saling berhubungan, yaitu users, assets, incident_categories, incidents, dan incident_updates.
+
+Diagram hubungan tabel dapat dilihat di [ERD CyberIncident API](docs/ERD.md).
+
 ## 7. Dokumentasi Pengujian Postman
 
 Pengujian dilakukan menggunakan Postman untuk memastikan API berjalan dengan baik.
